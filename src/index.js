@@ -70,6 +70,7 @@ async function runner(request, env) {
         narrativeContract(env).narrative(runnerId),
     ]).then(([runner, chain, owner, narrative]) => {
         runner.attributes['Notoriety Points'] = chain.notorietyPoints.toNumber();
+        runner.id = runnerId;
         runner.owner = owner;
         runner.narrative = narrative;
         return runner;

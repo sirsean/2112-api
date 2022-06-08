@@ -29,6 +29,12 @@ async function home(request) {
 
         <hr />
 
+        <h2>Runner Image</h2>
+        <code>/runner/{runnerId}.png</code>
+        <p><a href="/runner/1448.png">Example</a></p>
+
+        <hr />
+
         <h2>Runs</h2>
         <code>/runner/{runnerId}/runs</code>
         <p><a href="/runner/1448/runs">Example</a></p>

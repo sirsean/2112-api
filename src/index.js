@@ -59,6 +59,17 @@ async function apiResponse(body) {
     });
 }
 
+async function runnerImg(request, env) {
+    const url = new URL(request.url);
+    const re = /^\/runner\/(\d+).png$/;
+    const [_, runnerId] = re.exec(url.pathname);
+    return fetch(`https://mint.2112.run/tokens721/${runnerId}.json`)
+        .then(r => r.json())
+        .then(({ image }) => {
+            return Response.redirect(image, 301);
+        });
+}
+
 async function runner(request, env) {
     const url = new URL(request.url);
     const re = /^\/runner\/(\d+)$/;
@@ -106,6 +117,7 @@ function handler(pathname) {
         [/^\/$/, home],
         [/^\/favicon.ico$/, favicon],
         [/^\/style.css$/, stylesheet],
+        [/^\/runner\/\d+\.png$/, runnerImg],
         [/^\/runner\/\d+$/, runner],
         [/^\/runner\/\d+\/runs$/, runs],
         [/^\/run\/.+$/, viewRun],
